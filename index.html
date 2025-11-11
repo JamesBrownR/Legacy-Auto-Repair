@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy Auto Repair - Diesel and Gasoline Experts</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Color scheme: Serious - Navy blue (#003366), Red (#cc0000), Gray (#666), White (#fff) */
+        :root {
+            --primary-blue: #003366;
+            --primary-red: #cc0000;
+            --secondary-gray: #666;
+            --bg-light: #f4f4f4;
+            --bg-white: #fff;
+            --text-dark: #333;
+            --text-light: #fff;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .phone {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        header .phone a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        header .phone a:hover {
+            text-decoration: underline;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: var(--text-light);
+            font-weight: bold;
+        }
+
+        /* Hero section - Full screen */
+        #hero {
+            height: 100vh;
+            background-color: var(--primary-blue); /* Failsafe solid color */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            padding: 80px 20px 20px; /* Account for fixed header */
+            position: relative;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('LEGACY-AUTO-REPAIR.png'); /* Assume this filename */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.8;
+            z-index: 1;
+        }
+        #hero > * {
+            position: relative;
+            z-index: 2;
+        }
+        #hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        #hero p {
+            font-size: 1.5em;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+        #hero .cta {
+            background-color: var(--primary-red);
+            color: var(--text-light);
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #hero .cta:hover {
+            background-color: #990000;
+        }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+        }
+        section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-blue);
+        }
+
+        /* About */
+        #about {
+            background-color: var(--bg-white);
+        }
+
+        /* Services */
+        #services {
+            background-color: var(--bg-light);
+        }
+        #services ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        #services li {
+            background-color: var(--bg-white);
+            padding: 20px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        /* Reviews */
+        #reviews {
+            background-color: var(--bg-white);
+        }
+        .review {
+            background-color: var(--bg-light);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        .review .stars {
+            color: #ffd700;
+            font-size: 1.2em;
+        }
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        #show-more {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            border: none;
+            cursor: pointer;
+        }
+        #show-more:hover {
+            background-color: #002244;
+        }
+
+        /* Contact */
+        #contact {
+            background-color: var(--bg-light);
+        }
+        #contact form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        #contact input, #contact textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        #contact button {
+            background-color: var(--primary-red);
+            color: var(--text-light);
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        #contact button:hover {
+            background-color: #990000;
+        }
+        .social-links {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .social-links a {
+            margin: 0 10px;
+            font-size: 1.2em;
+        }
+        .square-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .square-link a {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            display: inline-block;
+        }
+
+        /* Map */
+        #map {
+            background-color: var(--bg-white);
+            text-align: center;
+        }
+        #map iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            border: 0;
+        }
+
+        /* Hours */
+        #hours {
+            background-color: var(--bg-light);
+        }
+        #hours table {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        #hours th, #hours td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        #hours th {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2em;
+            }
+            #hero p {
+                font-size: 1.2em;
+            }
+            header .container {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-top: 10px;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="phone">
+                <a href="tel:(405)876-3169">(405) 876-3169</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#hours">Hours</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#map">Map</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <h1>Legacy Auto Repair</h1>
+        <p>All about Auto and Truck Repairs, Gasoline and Diesel. Engine repairs, Electrical, Modules Reprograming, A/C and Heater, Brakes, Suspension, Etc... 15 years of experience! Expert on diagnostic, DIAGNOSTIC FIRST! all repairs have warranty.</p>
+        <button class="cta" onclick="document.getElementById('contact').scrollIntoView();">Contact Us Today</button>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Owned by Hugo, Legacy Auto Repair is your trusted partner for all diesel and gasoline vehicle needs in Oklahoma City. With over 15 years of experience, we prioritize diagnostics to ensure accurate and efficient repairs. All our work comes with a warranty for your peace of mind.</p>
+            <p>Address: 6621 S Shields Blvd, Oklahoma City, OK 73149</p>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <ul>
+                <li>Engine Repairs</li>
+                <li>Electrical Systems</li>
+                <li>Modules Reprogramming</li>
+                <li>A/C and Heater</li>
+                <li>Brakes</li>
+                <li>Suspension</li>
+                <li>And More...</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <div class="container">
+            <h2>Customer Reviews</h2>
+            <div id="review-grid" class="review-grid"></div>
+            <button id="show-more" style="display: none;">Show More</button>
+        </div>
+    </section>
+
+    <section id="hours">
+        <div class="container">
+            <h2>Business Hours</h2>
+            <table>
+                <tr><th>Day</th><th>Hours</th></tr>
+                <tr><td>Monday</td><td>8 AM–6 PM</td></tr>
+                <tr><td>Tuesday (Veterans Day)</td><td>8 AM–6 PM (Hours might differ)</td></tr>
+                <tr><td>Wednesday</td><td>8 AM–6 PM</td></tr>
+                <tr><td>Thursday</td><td>8 AM–6 PM</td></tr>
+                <tr><td>Friday</td><td>8 AM–6 PM</td></tr>
+                <tr><td>Saturday</td><td>8 AM–6 PM</td></tr>
+                <tr><td>Sunday</td><td>Closed</td></tr>
+            </table>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="tel" name="phone" placeholder="Your Phone">
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <div class="social-links">
+                <a href="https://www.facebook.com/people/Legacy-Auto-Repair/61573030954877/?_rdr" target="_blank">Facebook</a>
+                <a href="https://www.yelp.com/biz/legacy-auto-repair-oklahoma-city" target="_blank">Yelp</a>
+                <a href="https://www.google.com/maps/place/LEGACY+AUTO+REPAIR/@35.399513,-97.7976801,11z/data=!4m10!1m2!2m1!1sLEGACY+AUTO+REPAIR+oklahoma!3m6!1s0x87b215a1c0964b17:0x796ef3f8d3bc6651!8m2!3d35.399513!4d-97.509289!15sChtMRUdBQ1kgQVVUTyBSRVBBSVIgb2tsYWhvbWFaHSIbbGVnYWN5IGF1dG8gcmVwYWlyIG9rbGFob21hkgEQYXV0b19yZXBhaXJfc2hvcJoBI0NoWkRTVWhOTUc5blMwVkpRMEZuVFVSM01tTjJZbVozRUFFqgF1Cg0vZy8xMWx5eDdfYzM1CggvbS8wNW1waBABKhYiEmxlZ2FjeSBhdXRvIHJlcGFpcigAMh8QASIbf7qd6fk56rLi-nqnQ2d4X4YvhXjB-cqTvNIWMh8QAiIbbGVnYWN5IGF1dG8gcmVwYWlyIG9rbGFob21h4AEA-gEECAAQNQ!16s%2Fg%2F11lyx7_c35?entry=ttu&g_ep=EgoyMDI1MTEwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank">Google</a>
+            </div>
+            <div class="square-link">
+                <a href="https://squareup.com/appointments/book/YOUR_LOCATION_ID" target="_blank">Book with Square (Example)</a>
+                <!-- Replace YOUR_LOCATION_ID with actual Square location ID -->
+            </div>
+        </div>
+    </section>
+
+    <section id="map">
+        <div class="container">
+            <h2>Find Us</h2>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d208142.81328369968!2d-97.79768011328122!3d35.39951299999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b215a1c0964b17%3A0x796ef3f8d3bc6651!2sLEGACY%20AUTO%20REPAIR!5e0!3m2!1sen!2sus!4v1762885898184!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Legacy Auto Repair. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Reviews array - Add more as needed
+        const reviews = [
+            { name: "Reviewer 1", rating: 5, body: "" },
+            { name: "Reviewer 2", rating: 5, body: "" },
+            { name: "Reviewer 3", rating: 5, body: "" },
+            { name: "Reviewer 4", rating: 5, body: "" },
+            { name: "Reviewer 5", rating: 5, body: "" },
+            { name: "Reviewer 6", rating: 5, body: "" }
+        ];
+
+        const pageSize = 6;
+        let currentPage = 1;
+        const reviewGrid = document.getElementById('review-grid');
+        const showMoreBtn = document.getElementById('show-more');
+
+        function renderReviews(page) {
+            const start = (page - 1) * pageSize;
+            const end = start + pageSize;
+            const pageReviews = reviews.slice(start, end);
+
+            pageReviews.forEach(review => {
+                const reviewElem = document.createElement('div');
+                reviewElem.classList.add('review');
+                reviewElem.innerHTML = `
+                    <h3>${review.name}</h3>
+                    <div class="stars">${'★'.repeat(review.rating)}</div>
+                    <p>${review.body}</p>
+                `;
+                reviewGrid.appendChild(reviewElem);
+            });
+        }
+
+        function updateShowMore() {
+            const remaining = reviews.length - (currentPage * pageSize);
+            if (remaining > 0) {
+                showMoreBtn.style.display = 'block';
+                showMoreBtn.textContent = `Show More (${remaining})`;
+            } else {
+                showMoreBtn.style.display = 'none';
+            }
+        }
+
+        // Initial render
+        renderReviews(currentPage);
+        updateShowMore();
+
+        showMoreBtn.addEventListener('click', () => {
+            currentPage++;
+            renderReviews(currentPage);
+            updateShowMore();
+        });
+    </script>
+
+</body>
+</html>
