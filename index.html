@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legacy Auto Repair - Diesel and Gasoline Experts</title>
     <style>
-        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
@@ -21,16 +20,12 @@
             text-decoration: none;
             color: #007bff;
         }
-        a:hover {
-            text-decoration: underline;
-        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Color scheme: Serious - Navy blue (#003366), Red (#cc0000), Gray (#666), White (#fff) */
         :root {
             --primary-blue: #003366;
             --primary-red: #cc0000;
@@ -45,51 +40,66 @@
         header {
             background-color: var(--primary-blue);
             color: var(--text-light);
-            padding: 10px 0;
+            padding: 15px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
         header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        header .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        header .logo-section img {
+            height: 50px;
+            width: auto;
+        }
         header .phone {
-            font-size: 1.2em;
+            font-size: 1.3em;
             font-weight: bold;
+            letter-spacing: 1px;
         }
         header .phone a {
             color: var(--text-light);
             text-decoration: none;
+            transition: color 0.3s;
         }
         header .phone a:hover {
-            text-decoration: underline;
+            color: var(--primary-red);
         }
         nav ul {
             list-style: none;
             display: flex;
-        }
-        nav ul li {
-            margin-left: 20px;
+            gap: 25px;
         }
         nav ul li a {
             color: var(--text-light);
             font-weight: bold;
+            padding: 8px 15px;
+            transition: background-color 0.3s;
+            display: block;
+        }
+        nav ul li a:hover {
+            background-color: var(--primary-red);
         }
 
-        /* Hero section - Full screen */
+        /* Hero section */
         #hero {
-            height: 100vh;
-            background-color: var(--primary-blue); /* Failsafe solid color */
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #004080 100%);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: var(--text-light);
-            padding: 80px 20px 20px; /* Account for fixed header */
+            padding: 120px 20px 60px;
             position: relative;
         }
         #hero::before {
@@ -99,38 +109,57 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('LEGACY-AUTO-REPAIR.png'); /* Assume this filename */
+            background-image: url('Legacyautorepair.jpeg');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            opacity: 0.8;
+            opacity: 0.15;
             z-index: 1;
         }
-        #hero > * {
+        #hero .hero-content {
             position: relative;
             z-index: 2;
+            max-width: 900px;
+        }
+        #hero .logo-hero {
+            max-width: 300px;
+            margin: 0 auto 30px;
+        }
+        #hero .logo-hero img {
+            width: 100%;
+            height: auto;
         }
         #hero h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
         }
-        #hero p {
-            font-size: 1.5em;
-            max-width: 800px;
+        #hero .hero-description {
+            font-size: 1.3em;
+            margin-bottom: 25px;
+            line-height: 1.8;
+        }
+        #hero .hero-address {
+            font-size: 1.2em;
             margin-bottom: 30px;
+            font-weight: bold;
         }
         #hero .cta {
             background-color: var(--primary-red);
             color: var(--text-light);
-            padding: 15px 30px;
+            padding: 18px 40px;
             font-size: 1.2em;
             border: none;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
         #hero .cta:hover {
             background-color: #990000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
 
         /* Sections */
@@ -141,16 +170,14 @@
             text-align: center;
             margin-bottom: 40px;
             color: var(--primary-blue);
-        }
-
-        /* About */
-        #about {
-            background-color: var(--bg-white);
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         /* Services */
         #services {
-            background-color: var(--bg-light);
+            background-color: var(--bg-white);
         }
         #services ul {
             list-style: none;
@@ -159,25 +186,39 @@
             gap: 20px;
         }
         #services li {
-            background-color: var(--bg-white);
-            padding: 20px;
-            border: 1px solid #ddd;
+            background-color: var(--bg-light);
+            padding: 25px;
+            border: 2px solid var(--primary-blue);
             text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        #services li:hover {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            transform: translateY(-5px);
         }
 
         /* Reviews */
         #reviews {
-            background-color: var(--bg-white);
+            background-color: var(--bg-light);
         }
         .review {
-            background-color: var(--bg-light);
-            padding: 20px;
+            background-color: var(--bg-white);
+            padding: 25px;
             margin-bottom: 20px;
             border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .review h3 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
         }
         .review .stars {
             color: #ffd700;
             font-size: 1.2em;
+            margin-bottom: 10px;
         }
         .review-grid {
             display: grid;
@@ -187,14 +228,42 @@
         #show-more {
             display: block;
             margin: 20px auto;
-            padding: 10px 20px;
+            padding: 12px 30px;
             background-color: var(--primary-blue);
             color: var(--text-light);
             border: none;
             cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
         #show-more:hover {
             background-color: #002244;
+        }
+
+        /* Hours */
+        #hours {
+            background-color: var(--bg-white);
+        }
+        #hours table {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        #hours th, #hours td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        #hours th {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            font-size: 1.1em;
+        }
+        #hours td {
+            background-color: var(--bg-white);
         }
 
         /* Contact */
@@ -207,9 +276,14 @@
         }
         #contact input, #contact textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 20px;
-            border: 1px solid #ddd;
+            border: 2px solid #ddd;
+            font-size: 1em;
+        }
+        #contact input:focus, #contact textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
         }
         #contact button {
             background-color: var(--primary-red);
@@ -218,28 +292,31 @@
             border: none;
             cursor: pointer;
             width: 100%;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
         #contact button:hover {
             background-color: #990000;
         }
-        .social-links {
-            text-align: center;
+        .contact-links {
             margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
-        .social-links a {
-            margin: 0 10px;
-            font-size: 1.2em;
-        }
-        .square-link {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-        }
-        .square-link a {
-            background-color: #000;
-            color: #fff;
-            padding: 10px 20px;
+        .contact-links a {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            padding: 12px 25px;
             display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .contact-links a:hover {
+            background-color: var(--primary-red);
+            transform: translateY(-2px);
         }
 
         /* Map */
@@ -251,27 +328,7 @@
             width: 100%;
             max-width: 800px;
             height: 450px;
-            border: 0;
-        }
-
-        /* Hours */
-        #hours {
-            background-color: var(--bg-light);
-        }
-        #hours table {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            border-collapse: collapse;
-        }
-        #hours th, #hours td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        #hours th {
-            background-color: var(--primary-blue);
-            color: var(--text-light);
+            border: 2px solid var(--primary-blue);
         }
 
         /* Footer */
@@ -279,25 +336,26 @@
             background-color: var(--primary-blue);
             color: var(--text-light);
             text-align: center;
-            padding: 20px 0;
+            padding: 30px 0;
+            font-size: 1.1em;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             #hero h1 {
-                font-size: 2em;
+                font-size: 2.2em;
             }
-            #hero p {
-                font-size: 1.2em;
+            #hero .hero-description {
+                font-size: 1.1em;
             }
             header .container {
                 flex-direction: column;
+                gap: 15px;
             }
             nav ul {
-                margin-top: 10px;
-            }
-            nav ul li {
-                margin: 0 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
             }
         }
     </style>
@@ -306,12 +364,14 @@
 
     <header>
         <div class="container">
-            <div class="phone">
-                <a href="tel:(405)876-3169">(405) 876-3169</a>
+            <div class="logo-section">
+                <img src="Legacyautorepair.jpeg" alt="Legacy Auto Repair Logo">
+                <div class="phone">
+                    <a href="tel:(405)876-3169">(405) 876-3169</a>
+                </div>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#reviews">Reviews</a></li>
                     <li><a href="#hours">Hours</a></li>
@@ -323,16 +383,16 @@
     </header>
 
     <section id="hero">
-        <h1>Legacy Auto Repair</h1>
-        <p>All about Auto and Truck Repairs, Gasoline and Diesel. Engine repairs, Electrical, Modules Reprograming, A/C and Heater, Brakes, Suspension, Etc... 15 years of experience! Expert on diagnostic, DIAGNOSTIC FIRST! all repairs have warranty.</p>
-        <button class="cta" onclick="document.getElementById('contact').scrollIntoView();">Contact Us Today</button>
-    </section>
-
-    <section id="about">
-        <div class="container">
-            <h2>About Us</h2>
-            <p>Owned by Hugo, Legacy Auto Repair is your trusted partner for all diesel and gasoline vehicle needs in Oklahoma City. With over 15 years of experience, we prioritize diagnostics to ensure accurate and efficient repairs. All our work comes with a warranty for your peace of mind.</p>
-            <p>Address: 6621 S Shields Blvd, Oklahoma City, OK 73149</p>
+        <div class="hero-content">
+            <div class="logo-hero">
+                <img src="Legacyautorepair.jpeg" alt="Legacy Auto Repair">
+            </div>
+            <h1>Legacy Auto Repair</h1>
+            <p class="hero-description">
+                Your trusted partner for all diesel and gasoline vehicle needs in Oklahoma City. Specializing in engine repairs, electrical systems, module reprogramming, A/C and heating, brakes, suspension, and more. With over 15 years of experience, we prioritize diagnostics to ensure accurate and efficient repairs. All our work comes with a warranty for your peace of mind.
+            </p>
+            <p class="hero-address">6621 S Shields Blvd, Oklahoma City, OK 73149</p>
+            <button class="cta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Contact Us Today</button>
         </div>
     </section>
 
@@ -342,10 +402,11 @@
             <ul>
                 <li>Engine Repairs</li>
                 <li>Electrical Systems</li>
-                <li>Modules Reprogramming</li>
-                <li>A/C and Heater</li>
+                <li>Module Reprogramming</li>
+                <li>A/C and Heating</li>
                 <li>Brakes</li>
                 <li>Suspension</li>
+                <li>Diagnostic Services</li>
                 <li>And More...</li>
             </ul>
         </div>
@@ -364,12 +425,12 @@
             <h2>Business Hours</h2>
             <table>
                 <tr><th>Day</th><th>Hours</th></tr>
-                <tr><td>Monday</td><td>8 AM–6 PM</td></tr>
-                <tr><td>Tuesday (Veterans Day)</td><td>8 AM–6 PM (Hours might differ)</td></tr>
-                <tr><td>Wednesday</td><td>8 AM–6 PM</td></tr>
-                <tr><td>Thursday</td><td>8 AM–6 PM</td></tr>
-                <tr><td>Friday</td><td>8 AM–6 PM</td></tr>
-                <tr><td>Saturday</td><td>8 AM–6 PM</td></tr>
+                <tr><td>Monday</td><td>8 AM – 6 PM</td></tr>
+                <tr><td>Tuesday</td><td>8 AM – 6 PM</td></tr>
+                <tr><td>Wednesday</td><td>8 AM – 6 PM</td></tr>
+                <tr><td>Thursday</td><td>8 AM – 6 PM</td></tr>
+                <tr><td>Friday</td><td>8 AM – 6 PM</td></tr>
+                <tr><td>Saturday</td><td>8 AM – 6 PM</td></tr>
                 <tr><td>Sunday</td><td>Closed</td></tr>
             </table>
         </div>
@@ -385,14 +446,11 @@
                 <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
-            <div class="social-links">
+            <div class="contact-links">
                 <a href="https://www.facebook.com/people/Legacy-Auto-Repair/61573030954877/?_rdr" target="_blank">Facebook</a>
                 <a href="https://www.yelp.com/biz/legacy-auto-repair-oklahoma-city" target="_blank">Yelp</a>
-                <a href="https://www.google.com/maps/place/LEGACY+AUTO+REPAIR/@35.399513,-97.7976801,11z/data=!4m10!1m2!2m1!1sLEGACY+AUTO+REPAIR+oklahoma!3m6!1s0x87b215a1c0964b17:0x796ef3f8d3bc6651!8m2!3d35.399513!4d-97.509289!15sChtMRUdBQ1kgQVVUTyBSRVBBSVIgb2tsYWhvbWFaHSIbbGVnYWN5IGF1dG8gcmVwYWlyIG9rbGFob21hkgEQYXV0b19yZXBhaXJfc2hvcJoBI0NoWkRTVWhOTUc5blMwVkpRMEZuVFVSM01tTjJZbVozRUFFqgF1Cg0vZy8xMWx5eDdfYzM1CggvbS8wNW1waBABKhYiEmxlZ2FjeSBhdXRvIHJlcGFpcigAMh8QASIbf7qd6fk56rLi-nqnQ2d4X4YvhXjB-cqTvNIWMh8QAiIbbGVnYWN5IGF1dG8gcmVwYWlyIG9rbGFob21h4AEA-gEECAAQNQ!16s%2Fg%2F11lyx7_c35?entry=ttu&g_ep=EgoyMDI1MTEwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank">Google</a>
-            </div>
-            <div class="square-link">
-                <a href="https://squareup.com/appointments/book/YOUR_LOCATION_ID" target="_blank">Book with Square (Example)</a>
-                <!-- Replace YOUR_LOCATION_ID with actual Square location ID -->
+                <a href="https://www.google.com/maps/place/LEGACY+AUTO+REPAIR/@35.399513,-97.7976801,11z/data=!4m10!1m2!2m1!1sLEGACY+AUTO+REPAIR+oklahoma!3m6!1s0x87b215a1c0964b17:0x796ef3f8d3bc6651!8m2!3d35.399513!4d-97.509289!15sChtMRUdBQ1kgQVVUTyBSRVBBSVIgb2tsYWhvbWFaHSIbbGVnYWN5IGF1dG8gcmVwYWlyIG9rbGFob21hkgEQYXV0b19yZXBhaXJfc2hvcJoBI0NoWkRTVWhOTUc5blMwVkpRMEZuVFVSM01tTjJZbVozRUFFqgF1Cg0vZy8xMWx5eDdfYzM1CggvbS8wNW1waBABKhYiEmxlZ2FjeSBhdXRvIHJlcGFpcigAMh8QASIbf7qd6fk56rLi-nqnQ2d4X4YvhXjB-cqTvNIWMh8QAiIbbGVnYWN5IGF1dG8gcmVwYWlyIG9rbGFob21h4AEA-gEECAAQNQ!16s%2Fg%2F11lyx7_c35?entry=ttu&g_ep=EgoyMDI1MTEwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank">Google Reviews</a>
+                <a href="https://squareup.com/appointments/book/YOUR_LOCATION_ID" target="_blank">Book Appointment</a>
             </div>
         </div>
     </section>
@@ -400,7 +458,7 @@
     <section id="map">
         <div class="container">
             <h2>Find Us</h2>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d208142.81328369968!2d-97.79768011328122!3d35.39951299999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b215a1c0964b17%3A0x796ef3f8d3bc6651!2sLEGACY%20AUTO%20REPAIR!5e0!3m2!1sen!2sus!4v1762885898184!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d208142.81328369968!2d-97.79768011328122!3d35.39951299999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87b215a1c0964b17%3A0x796ef3f8d3bc6651!2sLEGACY%20AUTO%20REPAIR!5e0!3m2!1sen!2sus!4v1762885898184!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>
 
@@ -411,50 +469,43 @@
     </footer>
 
     <script>
-        // Reviews array - Add more as needed
-    const reviews = [
-  {
-    name: "Sarah C.",
-    rating: 5,
-    body: "Came in to see what was wrong my car and Hugo and his team are amazing. They were able to figure out what was wrong with my car and fixed same day. Even without an appointment they were incredibly flexible with me. Would 100% recommend coming here to get any repair done. It's a bit far from where I live but it was worth the drive. Thank you again!!"
-  },
-  {
-    name: "Daryl D W.",
-    rating: 5,
-    body: "Legacy gained a client in me! Needed a last minute install, reserved an appointment within the hour and they had me in and out within 2 hours. Appreciate them tremendously and will definitely use them for any and all maintenance and servicing."
-  },
-  {
-    name: "Hugo A.",
-    rating: 5,
-    body: "Muy buen servicio! Muy profesionales y saben lo que hacen. Trabajo garantizado, excelente servicio al cliente."
-  },
-  {
-    name: "Mauricio Gomez",
-    rating: 5,
-    body: "Trustworthy guys and get the job done the right way!! No short cuts. 100% recommend!!!"
-  },
-  {
-    name: "Darwin Calderon",
-    rating: 5,
-    body: "The best in all of OKC. (Translated by Google ・ See original Spanish)"
-  },
-  {
-    name: "William Cotero",
-    rating: 5,
-    body: "Great price."
-  },
-  {
-    name: "Irving Leon",
-    rating: 5,
-    body: "Great price."
-  },
-  {
-    name: "RAHUL CHAWDA",
-    rating: 1,
-    body: "Very pathetic experience with them. I’ve shuttle service and my van had issue and friend of mine referred me this place. I sent van paying tow company and guy name Hugo informs me that need to change transmission which will cost 2k if i get… more."
-  }
-];
-
+        const reviews = [
+            {
+                name: "Sarah C.",
+                rating: 5,
+                body: "Came in to see what was wrong my car and Hugo and his team are amazing. They were able to figure out what was wrong with my car and fixed same day. Even without an appointment they were incredibly flexible with me. Would 100% recommend coming here to get any repair done. It's a bit far from where I live but it was worth the drive. Thank you again!!"
+            },
+            {
+                name: "Daryl D W.",
+                rating: 5,
+                body: "Legacy gained a client in me! Needed a last minute install, reserved an appointment within the hour and they had me in and out within 2 hours. Appreciate them tremendously and will definitely use them for any and all maintenance and servicing."
+            },
+            {
+                name: "Hugo A.",
+                rating: 5,
+                body: "Muy buen servicio! Muy profesionales y saben lo que hacen. Trabajo garantizado, excelente servicio al cliente."
+            },
+            {
+                name: "Mauricio Gomez",
+                rating: 5,
+                body: "Trustworthy guys and get the job done the right way!! No short cuts. 100% recommend!!!"
+            },
+            {
+                name: "Darwin Calderon",
+                rating: 5,
+                body: "The best in all of OKC."
+            },
+            {
+                name: "William Cotero",
+                rating: 5,
+                body: "Great price and excellent service."
+            },
+            {
+                name: "Irving Leon",
+                rating: 5,
+                body: "Professional work at fair prices."
+            }
+        ];
 
         const pageSize = 6;
         let currentPage = 1;
@@ -482,13 +533,12 @@
             const remaining = reviews.length - (currentPage * pageSize);
             if (remaining > 0) {
                 showMoreBtn.style.display = 'block';
-                showMoreBtn.textContent = `Show More (${remaining})`;
+                showMoreBtn.textContent = `Show More (${remaining} reviews)`;
             } else {
                 showMoreBtn.style.display = 'none';
             }
         }
 
-        // Initial render
         renderReviews(currentPage);
         updateShowMore();
 
